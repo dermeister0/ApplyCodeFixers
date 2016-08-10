@@ -60,7 +60,6 @@
     <Compile Include="DocumentationRules\SA1651CodeFixProvider.cs" />
     <Compile Include="Helpers\CustomBatchFixAllProvider.cs" />
     <Compile Include="Helpers\CustomFixAllProviders.cs" />
-    <Compile Include="Helpers\DiagnosticConfig.cs" />
     <Compile Include="Helpers\DocumentBasedFixAllProvider.cs" />
     <Compile Include="Helpers\FixAllContextHelper.cs" />
     <Compile Include="Helpers\FormattingHelper.cs" />

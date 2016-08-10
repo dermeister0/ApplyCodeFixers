@@ -1,12 +1,6 @@
 ﻿// Copyright (c) Tunnel Vision Laboratories, LLC. All Rights Reserved.
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.RegularExpressions;
-using Microsoft.VisualBasic.CompilerServices;
-
 namespace StyleCop.Analyzers.Helpers
 {
     using System.Collections.Immutable;
