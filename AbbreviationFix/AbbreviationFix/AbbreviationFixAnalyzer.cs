@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
+using StyleCop.Analyzers;
+using StyleCop.Analyzers.Settings.ObjectModel;
 
 namespace AbbreviationFix
 {
@@ -26,17 +27,17 @@ namespace AbbreviationFix
             new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, "NamingRules", DiagnosticSeverity.Warning, true, Description, HelpLink);
 
         private static readonly Action<CompilationStartAnalysisContext> CompilationStartAction = HandleCompilationStart;
-        private static readonly Action<SyntaxNodeAnalysisContext> ClassDeclarationAction = HandleClassDeclaration;
-        private static readonly Action<SyntaxNodeAnalysisContext> InterfaceDeclarationAction = HandleInterfaceDeclaration;
-        private static readonly Action<SyntaxNodeAnalysisContext> EnumDeclarationAction = HandleEnumDeclaration;
-        private static readonly Action<SyntaxNodeAnalysisContext> EnumMemberDeclarationAction = HandleEnumMemberDeclaration;
-        private static readonly Action<SyntaxNodeAnalysisContext> StructDeclarationAction = HandleStructDeclaration;
-        private static readonly Action<SyntaxNodeAnalysisContext> DelegateDeclarationAction = HandleDelegateDeclaration;
-        private static readonly Action<SyntaxNodeAnalysisContext> EventDeclarationAction = HandleEventDeclaration;
-        private static readonly Action<SyntaxNodeAnalysisContext> EventFieldDeclarationAction = HandleEventFieldDeclaration;
-        private static readonly Action<SyntaxNodeAnalysisContext> MethodDeclarationAction = HandleMethodDeclaration;
-        private static readonly Action<SyntaxNodeAnalysisContext> PropertyDeclarationAction = HandlePropertyDeclaration;
-        private static readonly Action<SyntaxNodeAnalysisContext> VariableDeclarationAction = HandleVariableDeclaration;
+        private static readonly Action<SyntaxNodeAnalysisContext, StyleCopSettings> ClassDeclarationAction = HandleClassDeclaration;
+        private static readonly Action<SyntaxNodeAnalysisContext, StyleCopSettings> InterfaceDeclarationAction = HandleInterfaceDeclaration;
+        private static readonly Action<SyntaxNodeAnalysisContext, StyleCopSettings> EnumDeclarationAction = HandleEnumDeclaration;
+        private static readonly Action<SyntaxNodeAnalysisContext, StyleCopSettings> EnumMemberDeclarationAction = HandleEnumMemberDeclaration;
+        private static readonly Action<SyntaxNodeAnalysisContext, StyleCopSettings> StructDeclarationAction = HandleStructDeclaration;
+        private static readonly Action<SyntaxNodeAnalysisContext, StyleCopSettings> DelegateDeclarationAction = HandleDelegateDeclaration;
+        private static readonly Action<SyntaxNodeAnalysisContext, StyleCopSettings> EventDeclarationAction = HandleEventDeclaration;
+        private static readonly Action<SyntaxNodeAnalysisContext, StyleCopSettings> EventFieldDeclarationAction = HandleEventFieldDeclaration;
+        private static readonly Action<SyntaxNodeAnalysisContext, StyleCopSettings> MethodDeclarationAction = HandleMethodDeclaration;
+        private static readonly Action<SyntaxNodeAnalysisContext, StyleCopSettings> PropertyDeclarationAction = HandlePropertyDeclaration;
+        private static readonly Action<SyntaxNodeAnalysisContext, StyleCopSettings> VariableDeclarationAction = HandleVariableDeclaration;
 
         /// <inheritdoc/>
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = ImmutableArray.Create(Descriptor);
@@ -49,20 +50,20 @@ namespace AbbreviationFix
 
         private static void HandleCompilationStart(CompilationStartAnalysisContext context)
         {
-            context.RegisterSyntaxNodeActionHonorExclusions(InterfaceDeclarationAction, SyntaxKind.InterfaceDeclaration);
-            context.RegisterSyntaxNodeActionHonorExclusions(ClassDeclarationAction, SyntaxKind.ClassDeclaration);
-            context.RegisterSyntaxNodeActionHonorExclusions(EnumDeclarationAction, SyntaxKind.EnumDeclaration);
-            context.RegisterSyntaxNodeActionHonorExclusions(EnumMemberDeclarationAction, SyntaxKind.EnumMemberDeclaration);
-            context.RegisterSyntaxNodeActionHonorExclusions(StructDeclarationAction, SyntaxKind.StructDeclaration);
-            context.RegisterSyntaxNodeActionHonorExclusions(DelegateDeclarationAction, SyntaxKind.DelegateDeclaration);
-            context.RegisterSyntaxNodeActionHonorExclusions(EventDeclarationAction, SyntaxKind.EventDeclaration);
-            context.RegisterSyntaxNodeActionHonorExclusions(EventFieldDeclarationAction, SyntaxKind.EventFieldDeclaration);
-            context.RegisterSyntaxNodeActionHonorExclusions(MethodDeclarationAction, SyntaxKind.MethodDeclaration);
-            context.RegisterSyntaxNodeActionHonorExclusions(PropertyDeclarationAction, SyntaxKind.PropertyDeclaration);
-            context.RegisterSyntaxNodeActionHonorExclusions(VariableDeclarationAction, SyntaxKind.VariableDeclaration);
+            context.RegisterSyntaxNodeAction(InterfaceDeclarationAction, SyntaxKind.InterfaceDeclaration);
+            context.RegisterSyntaxNodeAction(ClassDeclarationAction, SyntaxKind.ClassDeclaration);
+            context.RegisterSyntaxNodeAction(EnumDeclarationAction, SyntaxKind.EnumDeclaration);
+            context.RegisterSyntaxNodeAction(EnumMemberDeclarationAction, SyntaxKind.EnumMemberDeclaration);
+            context.RegisterSyntaxNodeAction(StructDeclarationAction, SyntaxKind.StructDeclaration);
+            context.RegisterSyntaxNodeAction(DelegateDeclarationAction, SyntaxKind.DelegateDeclaration);
+            context.RegisterSyntaxNodeAction(EventDeclarationAction, SyntaxKind.EventDeclaration);
+            context.RegisterSyntaxNodeAction(EventFieldDeclarationAction, SyntaxKind.EventFieldDeclaration);
+            context.RegisterSyntaxNodeAction(MethodDeclarationAction, SyntaxKind.MethodDeclaration);
+            context.RegisterSyntaxNodeAction(PropertyDeclarationAction, SyntaxKind.PropertyDeclaration);
+            context.RegisterSyntaxNodeAction(VariableDeclarationAction, SyntaxKind.VariableDeclaration);
         }
 
-        private static void HandleVariableDeclaration(SyntaxNodeAnalysisContext context)
+        private static void HandleVariableDeclaration(SyntaxNodeAnalysisContext context, StyleCopSettings settings)
         {
             VariableDeclarationSyntax syntax = (VariableDeclarationSyntax)context.Node;
             if (syntax.Parent.IsKind(SyntaxKind.EventFieldDeclaration))
@@ -83,66 +84,41 @@ namespace AbbreviationFix
                     continue;
                 }
 
-                CheckElementNameToken(context, variableDeclarator.Identifier);
+                CheckElementNameToken(context, variableDeclarator.Identifier, settings.AbbreviationRules);
             }
         }
 
-        private static void CheckNameSyntax(SyntaxNodeAnalysisContext context, NameSyntax nameSyntax)
+        private static void HandleClassDeclaration(SyntaxNodeAnalysisContext context, StyleCopSettings settings)
         {
-            if (nameSyntax == null || nameSyntax.IsMissing)
-            {
-                return;
-            }
-
-            QualifiedNameSyntax qualifiedNameSyntax = nameSyntax as QualifiedNameSyntax;
-            if (qualifiedNameSyntax != null)
-            {
-                CheckNameSyntax(context, qualifiedNameSyntax.Left);
-                CheckNameSyntax(context, qualifiedNameSyntax.Right);
-                return;
-            }
-
-            SimpleNameSyntax simpleNameSyntax = nameSyntax as SimpleNameSyntax;
-            if (simpleNameSyntax != null)
-            {
-                CheckElementNameToken(context, simpleNameSyntax.Identifier);
-                return;
-            }
-
-            // TODO: any other cases?
+            CheckElementNameToken(context, ((ClassDeclarationSyntax)context.Node).Identifier, settings.AbbreviationRules);
         }
 
-        private static void HandleClassDeclaration(SyntaxNodeAnalysisContext context)
+        private static void HandleInterfaceDeclaration(SyntaxNodeAnalysisContext context, StyleCopSettings settings)
         {
-            CheckElementNameToken(context, ((ClassDeclarationSyntax)context.Node).Identifier);
+            CheckElementNameToken(context, ((InterfaceDeclarationSyntax)context.Node).Identifier, settings.AbbreviationRules);
         }
 
-        private static void HandleInterfaceDeclaration(SyntaxNodeAnalysisContext context)
+        private static void HandleEnumDeclaration(SyntaxNodeAnalysisContext context, StyleCopSettings settings)
         {
-            CheckElementNameToken(context, ((InterfaceDeclarationSyntax)context.Node).Identifier);
+            CheckElementNameToken(context, ((EnumDeclarationSyntax)context.Node).Identifier, settings.AbbreviationRules);
         }
 
-        private static void HandleEnumDeclaration(SyntaxNodeAnalysisContext context)
+        private static void HandleEnumMemberDeclaration(SyntaxNodeAnalysisContext context, StyleCopSettings settings)
         {
-            CheckElementNameToken(context, ((EnumDeclarationSyntax)context.Node).Identifier);
+            CheckElementNameToken(context, ((EnumMemberDeclarationSyntax)context.Node).Identifier, settings.AbbreviationRules);
         }
 
-        private static void HandleEnumMemberDeclaration(SyntaxNodeAnalysisContext context)
+        private static void HandleStructDeclaration(SyntaxNodeAnalysisContext context, StyleCopSettings settings)
         {
-            CheckElementNameToken(context, ((EnumMemberDeclarationSyntax)context.Node).Identifier);
+            CheckElementNameToken(context, ((StructDeclarationSyntax)context.Node).Identifier, settings.AbbreviationRules);
         }
 
-        private static void HandleStructDeclaration(SyntaxNodeAnalysisContext context)
+        private static void HandleDelegateDeclaration(SyntaxNodeAnalysisContext context, StyleCopSettings settings)
         {
-            CheckElementNameToken(context, ((StructDeclarationSyntax)context.Node).Identifier);
+            CheckElementNameToken(context, ((DelegateDeclarationSyntax)context.Node).Identifier, settings.AbbreviationRules);
         }
 
-        private static void HandleDelegateDeclaration(SyntaxNodeAnalysisContext context)
-        {
-            CheckElementNameToken(context, ((DelegateDeclarationSyntax)context.Node).Identifier);
-        }
-
-        private static void HandleEventDeclaration(SyntaxNodeAnalysisContext context)
+        private static void HandleEventDeclaration(SyntaxNodeAnalysisContext context, StyleCopSettings settings)
         {
             var eventDeclaration = (EventDeclarationSyntax)context.Node;
             if (eventDeclaration.Modifiers.Any(SyntaxKind.OverrideKeyword))
@@ -151,10 +127,10 @@ namespace AbbreviationFix
                 return;
             }
 
-            CheckElementNameToken(context, eventDeclaration.Identifier);
+            CheckElementNameToken(context, eventDeclaration.Identifier, settings.AbbreviationRules);
         }
 
-        private static void HandleEventFieldDeclaration(SyntaxNodeAnalysisContext context)
+        private static void HandleEventFieldDeclaration(SyntaxNodeAnalysisContext context, StyleCopSettings settings)
         {
             EventFieldDeclarationSyntax eventFieldDeclarationSyntax = (EventFieldDeclarationSyntax)context.Node;
             VariableDeclarationSyntax variableDeclarationSyntax = eventFieldDeclarationSyntax.Declaration;
@@ -170,11 +146,11 @@ namespace AbbreviationFix
                     continue;
                 }
 
-                CheckElementNameToken(context, declarator.Identifier);
+                CheckElementNameToken(context, declarator.Identifier, settings.AbbreviationRules);
             }
         }
 
-        private static void HandleMethodDeclaration(SyntaxNodeAnalysisContext context)
+        private static void HandleMethodDeclaration(SyntaxNodeAnalysisContext context, StyleCopSettings settings)
         {
             var methodDeclaration = (MethodDeclarationSyntax)context.Node;
             if (methodDeclaration.Modifiers.Any(SyntaxKind.OverrideKeyword))
@@ -183,10 +159,10 @@ namespace AbbreviationFix
                 return;
             }
 
-            CheckElementNameToken(context, methodDeclaration.Identifier);
+            CheckElementNameToken(context, methodDeclaration.Identifier, settings.AbbreviationRules);
         }
 
-        private static void HandlePropertyDeclaration(SyntaxNodeAnalysisContext context)
+        private static void HandlePropertyDeclaration(SyntaxNodeAnalysisContext context, StyleCopSettings settings)
         {
             var propertyDeclaration = (PropertyDeclarationSyntax)context.Node;
             if (propertyDeclaration.Modifiers.Any(SyntaxKind.OverrideKeyword))
@@ -195,7 +171,7 @@ namespace AbbreviationFix
                 return;
             }
 
-            CheckElementNameToken(context, propertyDeclaration.Identifier);
+            CheckElementNameToken(context, propertyDeclaration.Identifier, settings.AbbreviationRules);
         }
 
         private static bool IsIdentifierValid(SyntaxToken identifier)
@@ -203,14 +179,14 @@ namespace AbbreviationFix
             return !identifier.IsMissing && !string.IsNullOrEmpty(identifier.ValueText);
         }
 
-        private static void CheckElementNameToken(SyntaxNodeAnalysisContext context, SyntaxToken identifier)
+        private static void CheckElementNameToken(SyntaxNodeAnalysisContext context, SyntaxToken identifier, AbbreviationSettings settings)
         {
             if (!IsIdentifierValid(identifier))
             {
                 return;
             }
 
-            IEnumerable<Match> matches = AbbreviationHelper.GetAbbreviationsInSymbol(identifier);
+            IEnumerable<Match> matches = AbbreviationHelper.GetAbbreviationsInSymbol(identifier, settings);
             if (!matches.Any())
             {
                 return;

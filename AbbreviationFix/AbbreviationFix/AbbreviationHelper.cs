@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using StyleCop.Analyzers.Settings.ObjectModel;
 
 namespace AbbreviationFix
 {
@@ -21,8 +22,9 @@ namespace AbbreviationFix
         /// public static int Name33nA -
         /// </summary>
         /// <param name="syntaxToken"></param>
+        /// <param name="settings"></param>
         /// <returns></returns>
-        public static IEnumerable<Match> GetAbbreviationsInSymbol(SyntaxToken syntaxToken)
+        public static IEnumerable<Match> GetAbbreviationsInSymbol(SyntaxToken syntaxToken, AbbreviationSettings settings)
         {
             var regex = @"\d+[A-Z]{2,}$|\d+[A-Z]{3,}|[A-Z]{2,}$|[A-Z]{2,}\d+|[A-Z]{3,}";
 
@@ -58,7 +60,7 @@ namespace AbbreviationFix
                         syntaxToken.ValueText.Substring(match.Index, length - match.Index),
                         @"([A-Z]{2,})(?![a-z])");
 
-                if (Config.Instance.AbbreviationsToSkip.Contains(onlySymbols.Value))
+                if (settings.AbbreviationsToSkip.Contains(onlySymbols.Value))
                 {
                     continue;
                 }

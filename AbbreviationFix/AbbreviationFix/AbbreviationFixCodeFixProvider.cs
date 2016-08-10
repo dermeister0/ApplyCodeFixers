@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Immutable;
+﻿using System.Collections.Immutable;
 using System.Composition;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CodeActions;
 using Microsoft.CodeAnalysis.CodeFixes;
-using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using StyleCop.Analyzers;
 using StyleCop.Analyzers.Helpers;
 
 namespace AbbreviationFix
@@ -37,12 +34,13 @@ namespace AbbreviationFix
         public override async Task RegisterCodeFixesAsync(CodeFixContext context)
         {
             var document = context.Document;
+            var settings = document.Project.AnalyzerOptions.GetStyleCopSettings(context.CancellationToken);
             var root = await document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false);
 
             foreach (var diagnostic in context.Diagnostics)
             {
                 var token = root.FindToken(diagnostic.Location.SourceSpan.Start);
-                var abbreveatures = AbbreviationHelper.GetAbbreviationsInSymbol(token);
+                var abbreveatures = AbbreviationHelper.GetAbbreviationsInSymbol(token, settings.AbbreviationRules);
                 var originalName = token.ValueText;
                 var memberSyntax = RenameHelper.GetParentDeclaration(token);
 

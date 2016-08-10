@@ -57,6 +57,12 @@ namespace StyleCop.Analyzers.Settings.ObjectModel
         private DocumentationSettings documentationRules;
 
         /// <summary>
+        /// This is the backing field for the <see cref="AbbreviationRules"/> property.
+        /// </summary>
+        [JsonProperty("abbreviationRules", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        private AbbreviationSettings abbreviationRules;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="StyleCopSettings"/> class during JSON deserialization.
         /// </summary>
         [JsonConstructor]
@@ -96,5 +102,8 @@ namespace StyleCop.Analyzers.Settings.ObjectModel
 
         public DocumentationSettings DocumentationRules =>
             this.documentationRules;
+
+        public AbbreviationSettings AbbreviationRules =>
+            this.abbreviationRules;
     }
 }

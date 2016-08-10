@@ -45,14 +45,6 @@ namespace StyleCopTester
             CheckOnlyMode = args.Contains("/check");
 
             SolutionPath = args.SingleOrDefault(i => !i.StartsWith("/", StringComparison.Ordinal));
-
-            var configParamPrefix = "/config:";
-            var configParam = args.SingleOrDefault(i => i.StartsWith(configParamPrefix));
-            if (configParam != null)
-            {
-                var configFile = configParam.Substring(configParamPrefix.Length);
-                ConfigLoader.Load(configFile);
-            }
         }
     }
 
