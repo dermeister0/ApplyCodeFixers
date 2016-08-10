@@ -21,65 +21,6 @@ namespace StyleCop.Analyzers.Helpers
 
     internal static class RenameHelper
     {
-        /// <summary>
-        /// Match opts (usefull for test):
-        /// public static int NAME +
-        /// public static int NameDDisable3DD +
-        /// public static int Name3DDaDDaDD ++
-        /// public static int Name3DS1+
-        /// public static int NameDX3+
-        /// public static int DX3name +
-        /// public static int D3Xcase; -
-        /// public static int Name773DB33TFTname222DXS +++
-        /// public static int Name33nA -
-        /// </summary>
-        /// <param name="syntaxToken"></param>
-        /// <returns></returns>
-        internal static IEnumerable<Match> GetAbbreveaturesInSymbol(SyntaxToken syntaxToken)
-        {
-            var regex = @"\d+[A-Z]{2,}$|\d+[A-Z]{3,}|[A-Z]{2,}$|[A-Z]{2,}\d+|[A-Z]{3,}";
-
-            Func<SyntaxToken, bool> isInterface =
-                token => token.Parent is InterfaceDeclarationSyntax && syntaxToken.ValueText[0] == 'I';
-            if (isInterface(syntaxToken))
-            {
-                // Ignore I symbol for interfaces. ReSharper abbreveature fixing logic does not consider 'I'. E.g. IDDeal is not abbreviation.
-                regex = $@"^I|({regex})";
-            }
-
-            var matches = Regex.Matches(syntaxToken.ValueText, regex);
-
-            foreach (Match match in matches)
-            {
-                if (isInterface(syntaxToken) &&
-                    match == matches[0])
-                {
-                    // [UGLY]: Ignore first match. Will be happy if someone will rewrite regex to avoid these tricks in code
-                    continue;
-                }
-
-                var length = match.Index + match.Value.Length;
-                if (syntaxToken.ValueText.Length > length)
-                {
-                    length++;
-                }
-
-                // Check registred abbreviations. Handle them in ReSharper way. If word continues after abbreviation
-                // last capital letter is not included to abbreviation - it is start of new word.
-                var onlySymbols =
-                    Regex.Match(
-                        syntaxToken.ValueText.Substring(match.Index, length - match.Index),
-                        @"([A-Z]{2,})(?![a-z])");
-
-                if (DiagnosticConfig.AbbreviationsToSkip.Contains(onlySymbols.Value))
-                {
-                    continue;
-                }
-
-                yield return match;
-            }
-        }
-
         public static async Task<Solution> RenameSymbolAsync(Document document, SyntaxNode root, SyntaxToken declarationToken, string newName, CancellationToken cancellationToken)
         {
             var annotatedRoot = root.ReplaceToken(declarationToken, declarationToken.WithAdditionalAnnotations(RenameAnnotation.Create()));

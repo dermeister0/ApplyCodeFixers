@@ -36,6 +36,8 @@
   <ItemGroup>
     <Compile Include="AbbreviationFixAnalyzer.cs" />
     <Compile Include="AbbreviationFixCodeFixProvider.cs" />
+    <Compile Include="AbbreviationHelper.cs" />
+    <Compile Include="Config.cs" />
     <Compile Include="AnalyzerExtensions.cs" />
     <Compile Include="GeneratedCodeAnalysisExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

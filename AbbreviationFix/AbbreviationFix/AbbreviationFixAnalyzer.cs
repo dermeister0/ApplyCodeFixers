@@ -210,7 +210,7 @@ namespace AbbreviationFix
                 return;
             }
 
-            IEnumerable<Match> matches = RenameHelper.GetAbbreveaturesInSymbol(identifier);
+            IEnumerable<Match> matches = AbbreviationHelper.GetAbbreviationsInSymbol(identifier);
             if (!matches.Any())
             {
                 return;

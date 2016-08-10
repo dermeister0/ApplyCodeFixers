@@ -42,7 +42,7 @@ namespace AbbreviationFix
             foreach (var diagnostic in context.Diagnostics)
             {
                 var token = root.FindToken(diagnostic.Location.SourceSpan.Start);
-                var abbreveatures = RenameHelper.GetAbbreveaturesInSymbol(token);
+                var abbreveatures = AbbreviationHelper.GetAbbreviationsInSymbol(token);
                 var originalName = token.ValueText;
                 var memberSyntax = RenameHelper.GetParentDeclaration(token);
 
