@@ -17,7 +17,20 @@ namespace AbbreviationFix
 
         private static Dictionary<string, string> renameList = new Dictionary<string, string>
         {
-            ["FAREVP"] = "FarEvp"
+            ["FAREVP"] = "FarEvp",
+            ["EVPs"] = "Evps",
+            ["ATTUID"] = "AttUId",
+            ["CSSPK"] = "CssPK",
+            ["EVPSSA"] = "EvpSsa",
+            ["EVPDHS"] = "EvpDhs",
+            ["I9PDFTD"] = "I9PdfTD",
+            ["IDPK"] = "IdPK",
+            ["WSID"] = "WSId",
+            ["APID"] = "APId",
+            ["ALLBU"] = "AllBU",
+            ["CSCEVP"] = "CscEvp",
+            ["CSCFI9"] = "CscFI9",
+            ["FARI9EVP"] = "FarI9Evp"
         };
 
         /// <summary>
