@@ -15,6 +15,11 @@ namespace AbbreviationFix
 
         private static int renameCount;
 
+        private static Dictionary<string, string> renameList = new Dictionary<string, string>
+        {
+            ["FAREVP"] = "FarEvp"
+        };
+
         /// <summary>
         /// Match opts (usefull for test):
         /// public static int NAME +
@@ -75,29 +80,27 @@ namespace AbbreviationFix
             }
         }
 
+        public static string RenameAll(string oldIdentifier)
+        {
+            string newIdentifier = oldIdentifier;
+
+            foreach (var pair in renameList)
+            {
+                newIdentifier = newIdentifier.Replace(pair.Key, pair.Value);
+            }
+
+            return newIdentifier;
+        }
+
         public static void CheckElementNameToken(SyntaxNodeAnalysisContext context, SyntaxToken identifier, AbbreviationSettings settings, DiagnosticDescriptor descriptor)
         {
-            if (!IsIdentifierValid(identifier))
-            {
-                return;
-            }
+            string oldIdentifier = identifier.ValueText;
+            string newIdentifier = RenameAll(oldIdentifier);
 
-            IEnumerable<Match> matches = AbbreviationHelper.GetAbbreviationsInSymbol(identifier, settings);
-            if (!matches.Any())
-            {
-                return;
-            }
-
-            renameCount++;
-            if (renameCount <= MaxRenameCount)
+            if (oldIdentifier != newIdentifier)
             {
                 context.ReportDiagnostic(Diagnostic.Create(descriptor, identifier.GetLocation(), identifier.ValueText));
             }
-        }
-
-        private static bool IsIdentifierValid(SyntaxToken identifier)
-        {
-            return !identifier.IsMissing && !string.IsNullOrEmpty(identifier.ValueText);
         }
     }
 }
