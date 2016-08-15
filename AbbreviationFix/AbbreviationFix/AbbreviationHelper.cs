@@ -17,7 +17,7 @@ namespace AbbreviationFix
 
         private static Dictionary<string, string> renameList = new Dictionary<string, string>
         {
-            ["FAREVP"] = "FarEvp",
+            /*["FAREVP"] = "FarEvp",
             ["EVPs"] = "Evps",
             ["ATTUID"] = "AttUId",
             ["CSSPK"] = "CssPK",
@@ -30,7 +30,13 @@ namespace AbbreviationFix
             ["ALLBU"] = "AllBU",
             ["CSCEVP"] = "CscEvp",
             ["CSCFI9"] = "CscFI9",
-            ["FARI9EVP"] = "FarI9Evp"
+            ["FARI9EVP"] = "FarI9Evp"*/
+            /*["dOB"] = "dob",
+            ["sSN"] = "ssn",
+            ["eVP"] = "evp",
+            ["hTML"] = "html"*/
+            ["WSCSCID"] = "WSCscId",
+            ["DMVDHS"] = "DmvDhc"
         };
 
         /// <summary>
