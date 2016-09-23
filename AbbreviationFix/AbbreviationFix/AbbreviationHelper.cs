@@ -38,7 +38,13 @@ namespace AbbreviationFix
             /*["WSCSCID"] = "WSCscId",
             ["DMVDHS"] = "DmvDhc"*/
             ["ClientCompanyWSID"] = "ClientCompanyWSId",
-            ["ClientCompanyWsid"] = "ClientCompanyWSId"
+            ["ClientCompanyWsid"] = "ClientCompanyWSId",
+            ["BatchIDPK"] = "BatchIdPK",
+            ["BatchIdpk"] = "BatchIdPK",
+            ["WMID"] = "WMId",
+            ["Wmid"] = "WMId",
+            ["HOSTIPAddress"] = "HostIPAddress",
+            ["HostipAddress"] = "HostIPAddress"
         };
 
         /// <summary>
