@@ -44,7 +44,9 @@ namespace AbbreviationFix
             ["WMID"] = "WMId",
             ["Wmid"] = "WMId",
             ["HOSTIPAddress"] = "HostIPAddress",
-            ["HostipAddress"] = "HostIPAddress"
+            ["HostipAddress"] = "HostIPAddress",
+            ["EVPs"] = "Evps",
+            ["EvPs"] = "Evps"
         };
 
         /// <summary>
