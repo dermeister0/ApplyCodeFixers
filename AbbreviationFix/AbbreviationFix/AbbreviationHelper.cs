@@ -56,6 +56,19 @@ namespace AbbreviationFix
             ["SupportingDocumentIdcsc"] = "SupportingDocumentIdCsc",
             ["_SupportingDocumentIDCSC"] = "_supportingDocumentIdCsc",
             ["_SupportingDocumentIdcsc"] = "_supportingDocumentIdCsc"*/
+            /*["APP_CONNECTION_KEY"] = "AppConnectionKey",
+            ["_apP_ConnectioN_Key"] = "_appConnectionKey",
+            ["APP_CONNECTION_TITLE"] = "AppConnectionTitle",
+            ["_apP_ConnectioN_Title"] = "_appConnectionTitle",
+            ["APP_CONNECTION_DATABASE"] = "AppConnectionDatabase",
+            ["_apP_ConnectioN_Database"] = "_appConnectionDatabase",
+            ["FESSMMMain"] = "FessMMMain",
+            ["FessmmMain"] = "FessMMMain",
+            ["themedgrpHash"] = "themeDgrpHash",
+            ["btnCreateGUID_Click"] = "btnCreateGuid_Click",
+            ["btnCreateGuiD_Click"] = "btnCreateGuid_Click",
+            ["btnCreateHASH_Click"] = "btnCreateHash_Click",
+            ["btnCreateHasH_Click"] = "btnCreateHash_Click"*/
         };
 
         /// <summary>
