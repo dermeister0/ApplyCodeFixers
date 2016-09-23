@@ -37,6 +37,8 @@ namespace AbbreviationFix
             ["hTML"] = "html"*/
             /*["WSCSCID"] = "WSCscId",
             ["DMVDHS"] = "DmvDhc"*/
+            ["ClientCompanyWSID"] = "ClientCompanyWSId",
+            ["ClientCompanyWsid"] = "ClientCompanyWSId"
         };
 
         /// <summary>
