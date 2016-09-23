@@ -37,7 +37,7 @@ namespace AbbreviationFix
             ["hTML"] = "html"*/
             /*["WSCSCID"] = "WSCscId",
             ["DMVDHS"] = "DmvDhc"*/
-            ["ClientCompanyWSID"] = "ClientCompanyWSId",
+            /*["ClientCompanyWSID"] = "ClientCompanyWSId",
             ["ClientCompanyWsid"] = "ClientCompanyWSId",
             ["BatchIDPK"] = "BatchIdPK",
             ["BatchIdpk"] = "BatchIdPK",
@@ -46,7 +46,16 @@ namespace AbbreviationFix
             ["HOSTIPAddress"] = "HostIPAddress",
             ["HostipAddress"] = "HostIPAddress",
             ["EVPs"] = "Evps",
-            ["EvPs"] = "Evps"
+            ["EvPs"] = "Evps",
+            ["EVPPK"] = "EvpPK",
+            ["_EVPPK"] = "_evpPK",
+            ["Evppk"] = "EvpPK",
+            ["_evppk"] = "_evpPK",
+            ["lnkScannedFi9"] = "lnkScannedFI9",
+            ["SupportingDocumentIDCSC"] = "SupportingDocumentIdCsc",
+            ["SupportingDocumentIdcsc"] = "SupportingDocumentIdCsc",
+            ["_SupportingDocumentIDCSC"] = "_supportingDocumentIdCsc",
+            ["_SupportingDocumentIdcsc"] = "_supportingDocumentIdCsc"*/
         };
 
         /// <summary>
