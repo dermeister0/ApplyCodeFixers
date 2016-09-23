@@ -35,8 +35,8 @@ namespace AbbreviationFix
             ["sSN"] = "ssn",
             ["eVP"] = "evp",
             ["hTML"] = "html"*/
-            ["WSCSCID"] = "WSCscId",
-            ["DMVDHS"] = "DmvDhc"
+            /*["WSCSCID"] = "WSCscId",
+            ["DMVDHS"] = "DmvDhc"*/
         };
 
         /// <summary>
