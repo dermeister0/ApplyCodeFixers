@@ -69,6 +69,10 @@ namespace AbbreviationFix
             ["btnCreateGuiD_Click"] = "btnCreateGuid_Click",
             ["btnCreateHASH_Click"] = "btnCreateHash_Click",
             ["btnCreateHasH_Click"] = "btnCreateHash_Click"*/
+            /*["EVPTNCLetterReceivedData"] = "EvpTncLetterReceivedData",
+            ["EvptncLetterReceivedData"] = "EvpTncLetterReceivedData",
+            ["EVPTNCLetterReceivedDataReturn"] = "EvpTncLetterReceivedDataReturn",
+            ["EvptncLetterReceivedDataReturn"] = "EvpTncLetterReceivedDataReturn"*/
         };
 
         /// <summary>
