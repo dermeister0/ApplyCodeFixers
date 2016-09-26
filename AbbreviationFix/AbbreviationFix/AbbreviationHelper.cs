@@ -73,6 +73,16 @@ namespace AbbreviationFix
             ["EvptncLetterReceivedData"] = "EvpTncLetterReceivedData",
             ["EVPTNCLetterReceivedDataReturn"] = "EvpTncLetterReceivedDataReturn",
             ["EvptncLetterReceivedDataReturn"] = "EvpTncLetterReceivedDataReturn"*/
+            /*["HIERARCHYTIERDIVISIONREPORTRECEIPTS"] = "HierarchyTierDivisionReportReceipts",
+            ["Hierarchytierdivisionreportreceipts"] = "HierarchyTierDivisionReportReceipts",
+            ["EXCELAUDITLOGREPORT"] = "ExcelAuditLogReport",
+            ["Excelauditlogreport"] = "ExcelAuditLogReport",
+            ["EXCELEXPIRATIONDIVISIONEXPORT"] = "ExcelExpirationDivisionExport",
+            ["Excelexpirationdivisionexport"] = "ExcelExpirationDivisionExport",
+            ["EXCELADHOCREPORT"] = "ExcelAdHocReport",
+            ["Exceladhocreport"] = "ExcelAdHocReport",
+            ["EVPTentativeNonConfirmationtoNotContest"] = "EvpTentativeNonConfirmationToNotContest",
+            ["EVPTentativeNonConfirmationtoEmploymentAuthorized"] = "EvpTentativeNonConfirmationToEmploymentAuthorized"*/
         };
 
         /// <summary>
