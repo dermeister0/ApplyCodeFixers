@@ -157,7 +157,7 @@ namespace AbbreviationFix
         {
             return Regex.IsMatch(
                 Path.GetFileName(filePath),
-                @"\.designer\.cs$",
+                @"\.as[cp]x\.designer\.cs$",
                 RegexOptions.IgnoreCase | RegexOptions.ExplicitCapture);
         }
 

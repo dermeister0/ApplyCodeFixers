@@ -11,7 +11,7 @@ namespace AbbreviationFix
 {
     internal class AbbreviationHelper
     {
-        public const int MaxRenameCount = 200;
+        public const int MaxRenameCount = 150;
 
         private static int renameCount;
 
