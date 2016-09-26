@@ -89,6 +89,10 @@ namespace AbbreviationFix
             ["FessmM_localhost_eSignatureRequest"] = "FessMM_localhost_eSignatureRequest",
             ["FESSMM_ws_FESS_eSignatureRequest_eSignatureRequest"] = "FessMM_ws_Fess_eSignatureRequest_eSignatureRequest",
             ["FessmM_ws_FesS_eSignatureRequest_eSignatureRequest"] = "FessMM_ws_Fess_eSignatureRequest_eSignatureRequest"*/
+            /*["aTTUIDDataTextBox"] = "attUidDataTextBox",
+            ["aTtuidDataTextBox"] = "attUidDataTextBox",
+            ["aTTUIDCaptionTextBox"] = "attUidCaptionTextBox",
+            ["aTtuidCaptionTextBox"] = "attUidCaptionTextBox"*/
         };
 
         /// <summary>
