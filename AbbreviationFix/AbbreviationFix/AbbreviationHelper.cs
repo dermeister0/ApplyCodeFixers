@@ -83,6 +83,12 @@ namespace AbbreviationFix
             ["Exceladhocreport"] = "ExcelAdHocReport",
             ["EVPTentativeNonConfirmationtoNotContest"] = "EvpTentativeNonConfirmationToNotContest",
             ["EVPTentativeNonConfirmationtoEmploymentAuthorized"] = "EvpTentativeNonConfirmationToEmploymentAuthorized"*/
+            /*["ArchiveEVPbyEndUserReport"] = "ArchiveEvpByEndUserReport",
+            ["ArchiveEvPbyEndUserReport"] = "ArchiveEvpByEndUserReport",
+            ["FESSMM_localhost_eSignatureRequest"] = "FessMM_localhost_eSignatureRequest",
+            ["FessmM_localhost_eSignatureRequest"] = "FessMM_localhost_eSignatureRequest",
+            ["FESSMM_ws_FESS_eSignatureRequest_eSignatureRequest"] = "FessMM_ws_Fess_eSignatureRequest_eSignatureRequest",
+            ["FessmM_ws_FesS_eSignatureRequest_eSignatureRequest"] = "FessMM_ws_Fess_eSignatureRequest_eSignatureRequest"*/
         };
 
         /// <summary>
