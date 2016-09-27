@@ -93,6 +93,21 @@ namespace AbbreviationFix
             ["aTtuidDataTextBox"] = "attUidDataTextBox",
             ["aTTUIDCaptionTextBox"] = "attUidCaptionTextBox",
             ["aTtuidCaptionTextBox"] = "attUidCaptionTextBox"*/
+            /*["EmpSaveSSATNCNotification"] = "EmpSaveSsaTncNotification",
+            ["EmpSaveSsatncNotification"] = "EmpSaveSsaTncNotification",
+            ["SaveSSATNCNotificationTest"] = "SaveSsaTncNotificationTest",
+            ["SaveSsatncNotificationTest"] = "SaveSsaTncNotificationTest",
+            ["SaveDHSTNCNotificationProduction"] = "SaveDhsTncNotificationProduction",
+            ["SaveDhstncNotificationProduction"] = "SaveDhsTncNotificationProduction",
+            ["EmpSaveDHSTNCNotification"] = "EmpSaveDhsTncNotification",
+            ["EmpSaveDhstncNotification"] = "EmpSaveDhsTncNotification",
+            ["LINKTOEVP"] = "LinkToEvp",
+            ["CANCELNOREDIRECT"] = "CancelNoRedirect",
+            ["PRECANCEL"] = "PreCancel",
+            ["NOSHOW"] = "NoShow",
+            ["HIREDATE"] = "HireDate",
+            ["SIGNATUREONFILEDOESNOTMATCH"] = "SignatureOnFileDoesNotMatch",
+            ["SIGNATURENORMALDOESNOTMATCH"] = "SignatureNormalDoesNotMatch"*/
         };
 
         /// <summary>
